@@ -18,7 +18,7 @@ function scrollFunction() {
 function Header() {
   return (
     <React.Fragment>
-      <section className='d-flex bg-scheme1 container fixed-top mt-10 shadow-sm rounded' id='header'>
+      <section className='d-flex flex-wrap bg-scheme1 container fixed-top mt-10 shadow-sm rounded' id='header'>
         <div className='d-flex flex-row flex-wrap gap-5 align-items-center container py-3' id='navigation'>
           <div className="text-center">
             <img

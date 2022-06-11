@@ -16,9 +16,13 @@ function Main() {
             </div>
         </nav>
 
-        <section>
-          <Outlet />
-          <Footer />
+        <section className='row'>
+          <main className='col-12'>
+            <Outlet />
+          </main>
+          <footer className='col-12 pt-3'>
+            <Footer />
+          </footer>
         </section>
     </React.Fragment>
   )

@@ -7,7 +7,7 @@ function Footer() {
         <div class="container">
             <footer class="py-3">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12">
                         <h5>Navigation</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2">
@@ -22,8 +22,8 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div class="col-2">
-                        <h5 className='text-white'>.</h5>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12">
+                        <h5>Navigation</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2">
                                 <a href="#" class="nav-link p-0 text-muted">Test</a>
@@ -37,8 +37,8 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div class="col-2">
-                        <h5 className='text-white'>.</h5>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12">
+                        <h5>Navigation</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2">
                                 <a href="#" class="nav-link p-0 text-muted">Test</a>
@@ -46,14 +46,14 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div class="col-4 offset-1">
+                    <div class="col offset-1">
                         <form>
                             <h5>Subscribe to our newsletter</h5>
                             <p>Monthly email of whats new and exciting from us.</p>
                             <div class="d-flex w-100 gap-2">
                                 <label for="newsletter1" class="visually-hidden">Email address</label>
                                 <input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
-                                <button class="btn btn-primary" type="button">Subscribe</button>
+                                <button class="btn btn-light" type="button">Subscribe</button>
                             </div>
 
                         </form>
