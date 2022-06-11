@@ -345,7 +345,7 @@ function Home() {
                               placeholder="name@example.com"
                               required
                             />
-                            <label for="floatingInput">Email address</label>
+                            <label htmlFor="floatingInput">Email address</label>
                           </div>
                           <div className="form-floating mb-3">
                             <input
@@ -355,7 +355,7 @@ function Home() {
                               placeholder="Juan Dela Cruz"
                               required
                             />
-                            <label for="floatingInput">Complete name</label>
+                            <label htmlFor="floatingInput">Complete name</label>
                           </div>
                           <div className="form-floating mb-3">
                             <input
@@ -365,7 +365,9 @@ function Home() {
                               placeholder="0999 999 9999"
                               required
                             />
-                            <label for="floatingInput">Contact number</label>
+                            <label htmlFor="floatingInput">
+                              Contact number
+                            </label>
                           </div>
                           <div className="form-floating">
                             <textarea
@@ -375,7 +377,7 @@ function Home() {
                               style={{ height: "150px" }}
                               required
                             ></textarea>
-                            <label for="inquiry">Inquiry</label>
+                            <label htmlFor="inquiry">Inquiry</label>
                           </div>
                           <button
                             className="w-100 btn btn-lg btn-light mt-4"
