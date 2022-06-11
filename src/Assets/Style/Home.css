@@ -1,0 +1,75 @@
+.featured-card {
+    height: 35em !important;
+    max-height: 35em !important;
+    min-height: 35em !important;
+    transition: transform 0.15s;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.featured-card:hover {
+    opacity: 80%;
+    background-color: whitesmoke;
+    transform: scale(1.035);
+}
+
+.featured-details {
+    margin: 5px;
+    color: whitesmoke;
+}
+
+.card-body {
+    opacity: 1.0;
+    transition: opacity .55s ease-in-out;
+    -moz-transition: opacity .55s ease-in-out;
+    -webkit-transition: opacity .55s ease-in-out;
+}
+
+.ml-3 {
+    margin-left: 3em !important;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.text-justify {
+    text-align: center !important;
+    text-justify: inter-word !important;
+}
+
+#parallax {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: black;
+}
+
+#contactForm {
+    height: 35em;
+    min-height: 5em !important;
+    max-height: 35em !important;
+    overflow: auto;
+
+}
+
+.pos-bot {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: auto;
+}
+
+@media (max-width: 800px) {
+    .featured-card {
+        flex-direction: column;
+    }
+}
+
+@media (max-height: 800px) {
+    #contactForm {
+        height: 25em !important;
+    }
+}

@@ -1,0 +1,9 @@
+@media (max-width: 800px) {
+    #topbar {
+        flex-direction: column;
+    }
+}
+
+.flex-1 {
+    flex: 1;
+}
