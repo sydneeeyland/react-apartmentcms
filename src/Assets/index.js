@@ -13,6 +13,7 @@ import FloorPlan from './Svg/sample-Floorplan.png';
 import Facebook from './Svg/facebook.svg';
 import Twitter from './Svg/twitter.svg';
 import Instagram from './Svg/instagram.svg';
+import HomeSample from './Videos/HomeSample.mp4';
 
 export {
     Bed,
@@ -29,5 +30,6 @@ export {
     FloorPlan,
     Facebook,
     Twitter,
-    Instagram
+    Instagram,
+    HomeSample
 }

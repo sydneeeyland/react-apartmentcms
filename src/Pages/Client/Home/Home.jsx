@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../Assets/Style/Home.css';
 import { Link } from 'react-router-dom';
-import { Bed, Room, Kitchen, Closet, Aircon, Bathroom, Pax, Wifi, Building, Security, Money, FloorPlan } from '../../../Assets';
+import { Bed, Room, Kitchen, Closet, Aircon, Bathroom, Pax, Wifi, Building, Security, Money, FloorPlan, HomeSample } from '../../../Assets';
 
 function Home() {
   return (
@@ -49,6 +49,12 @@ function Home() {
         </div>
 
         <main>
+        <div class="px-4 py-5 text-center">
+          <h1 class="display-5 fw-bold">INSIGHT VIDEO</h1>
+          <video width={"1280"} height={"720"} controls autoPlay muted>
+            <source src={HomeSample} type='video/mp4'></source>
+          </video>
+        </div>
           <div className='container-fluid'>
             <div className='col-12'>
               <div className='row'>
