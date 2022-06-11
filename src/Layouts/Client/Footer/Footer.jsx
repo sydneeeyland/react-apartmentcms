@@ -46,7 +46,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div class="col offset-1">
+                    <div class="col-4 offset-1">
                         <form>
                             <h5>Subscribe to our newsletter</h5>
                             <p>Monthly email of whats new and exciting from us.</p>

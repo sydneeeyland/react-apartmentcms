@@ -1,9 +1,17 @@
+// Package
 import React from 'react';
-import '../../../Assets/Style/Home.css';
-import Carousel from '../../../Components/Carousel';
 import { Link } from 'react-router-dom';
-import { Bed, Room, Kitchen, Closet, Aircon, Bathroom, Pax, Wifi, Building, Security, Money, FloorPlan, HomeSample } from '../../../Assets';
 
+// Style
+import '../../../Assets/Style/Home.css';
+
+// Assets
+import { Wifi, Building, Security, Money, FloorPlan, HomeSample } from '../../../Assets';
+
+// Components
+import { Carousel, FeaturedProperties } from '../../../Components';
+
+/* move json to different folder */
 const carouselSlides = [
   {
     "label": "First slide label",
@@ -29,12 +37,52 @@ const carouselSlides = [
     "description": "Some representative placeholder content for the third slide",
     "active": false
   }
-]
+];
+
+const properties = [
+  {
+    "featuredImage": "https://images.squarespace-cdn.com/content/v1/56369862e4b0e778f327581a/1625134276720-BYE9BENJQYTPMUMY2PZT/2021-23+Riverside+Micro.02.jpg?format=1500w",
+    "title": "Lorem Ipsum",
+    "col": "col-lg-12 pb-4",
+    "room": 1,
+    "bed": 1,
+    "aircon": 1,
+    "kitchen": 1,
+    "bathroom": 1,
+    "closet": 1,
+    "pax": 1
+  },
+  {
+    "featuredImage": "https://images.squarespace-cdn.com/content/v1/56369862e4b0e778f327581a/1625134276720-BYE9BENJQYTPMUMY2PZT/2021-23+Riverside+Micro.02.jpg?format=1500w",
+    "title": "Lorem Ipsum",
+    "col": "col-lg-6 pb-4",
+    "room": 1,
+    "bed": 1,
+    "aircon": 1,
+    "kitchen": 1,
+    "bathroom": 1,
+    "closet": 1,
+    "pax": 1
+  },
+  {
+    "featuredImage": "https://images.squarespace-cdn.com/content/v1/56369862e4b0e778f327581a/1625134276720-BYE9BENJQYTPMUMY2PZT/2021-23+Riverside+Micro.02.jpg?format=1500w",
+    "title": "Lorem Ipsum",
+    "col": "col-lg-6 pb-4",
+    "room": 1,
+    "bed": 1,
+    "aircon": 1,
+    "kitchen": 1,
+    "bathroom": 1,
+    "closet": 1,
+    "pax": 1
+  }
+];
 
 function Home() {
   return (
     <React.Fragment>
-      <section className='d-flex flex-row flex-wrap'>
+      <section>
+        
         <div className='d-flex flex-column'>
           <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-indicators">
@@ -68,6 +116,7 @@ function Home() {
         </div>
 
         <main>
+
           <section className='container-fluid'>
             <div id='insightVideo' className="px-4 py-3 text-center" loading="lazy">
               <h1 className="display-5 fw-bold">IN-SIGHT VIDEO</h1>
@@ -76,6 +125,7 @@ function Home() {
               </video>
             </div>
           </section>
+
           <section>
             <div className='col-12'>
               <div className='row'>
@@ -87,132 +137,26 @@ function Home() {
               </div>
             </div>
           </section>
+
           <div className='container pt-1'>
             <div className='col-12'>
               <div id='featuredProperties' className='row'>
-                <div className='col-lg-12 pb-4'>
-                  <div className='card featured-card shadow-sm' style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/56369862e4b0e778f327581a/1625134276720-BYE9BENJQYTPMUMY2PZT/2021-23+Riverside+Micro.02.jpg?format=1500w')"}}>
-                    <div className='card-body'>
-                      <div className='d-flex flex-wrap flex-column justify-content-end align-items-center h-100'>
-                        <div className='d-flex flex-wrap featured-headerpt-5'>
-                          <h1 className='text-white fw-bold'>Lorem ipsum dolor sit amet</h1>
-                        </div>
-                        <div className='d-flex flex-wrap featured-details'>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Room} alt="Room" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Bed} alt="Bed" className="me-3" width="20"></img>
-                            2
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Aircon} alt="Closet" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Kitchen} alt="Kitchen" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Bathroom} alt="Bathroom" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Closet} alt="Closet" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Pax} alt="Allowed Tenants" className="me-3" width="20"></img>
-                            1
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-lg-6 pb-4'>
-                  <div className='card featured-card shadow-sm' style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/56369862e4b0e778f327581a/1625134276720-BYE9BENJQYTPMUMY2PZT/2021-23+Riverside+Micro.02.jpg?format=1500w')"}}>
-                    <div className='card-body'>
-                      <div className='d-flex flex-wrap flex-column justify-content-end align-items-center h-100'>
-                        <div className='d-flex flex-wrap featured-headerpt-5'>
-                          <h1 className='text-white fw-bold'>Lorem ipsum dolor sit amet</h1>
-                        </div>
-                        <div className='d-flex flex-wrap featured-details'>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Room} alt="Room" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Bed} alt="Bed" className="me-3" width="20"></img>
-                            2
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Aircon} alt="Closet" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Kitchen} alt="Kitchen" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Bathroom} alt="Bathroom" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Closet} alt="Closet" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Pax} alt="Allowed Tenants" className="me-3" width="20"></img>
-                            1
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-lg-6 pb-4'>
-                  <div className='card featured-card shadow-sm' style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/56369862e4b0e778f327581a/1625134276720-BYE9BENJQYTPMUMY2PZT/2021-23+Riverside+Micro.02.jpg?format=1500w')"}}>
-                    <div className='card-body'>
-                      <div className='d-flex flex-wrap flex-column justify-content-end align-items-center h-100'>
-                        <div className='d-flex flex-wrap featured-header pt-5'>
-                          <h1 className='text-white fw-bold'>Lorem ipsum dolor sit amet</h1>
-                        </div>
-                        <div className='d-flex flex-wrap featured-details'>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Room} alt="Room" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Bed} alt="Bed" className="me-3" width="20"></img>
-                            2
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Aircon} alt="Closet" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Kitchen} alt="Kitchen" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Bathroom} alt="Bathroom" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Closet} alt="Closet" className="me-3" width="20"></img>
-                            1
-                          </button>
-                          <button className='btn btn-light m-3 rounded-pill'>
-                            <img src={Pax} alt="Allowed Tenants" className="me-3" width="20"></img>
-                            1
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {
+                  properties.map((props, index) => (
+                    <FeaturedProperties 
+                      featuredImage={props.featuredImage}
+                      title={props.title}
+                      col={props.col}
+                      room={props.room}
+                      bed={props.bed}
+                      aircon={props.aircon}
+                      kitchen={props.kitchen}
+                      bathroom={props.bathroom}
+                      closet={props.closet}
+                      pax={props.pax}
+                    />
+                  ))
+                }
                 <div className='col-lg-12 pb-4'>
                   <div className='d-flex flex-wrap flex-column justify-content-end align-items-center h-100'>
                     <Link to='/apartment' className='btn btn-light w-50 fw-bold px-3 py-3 fs-5 rounded-pill'>SEE MORE ....</Link>
@@ -221,6 +165,7 @@ function Home() {
               </div>
             </div>
           </div>
+
           <div className="container col-xxl-8 px-4 py-5">
             <div id='floorPlanLayout' className="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center align-items-center">
               <div className="col-10 col-sm-8 col-lg-6">
@@ -232,6 +177,7 @@ function Home() {
               </div>
             </div>
           </div>
+
           <section>
             <div className='col-lg-12'>
               <div id='aboutSection' className='row bg-scheme1 py-5'>
@@ -255,6 +201,7 @@ function Home() {
               </div>
             </div>
           </section>
+
           <section>
             <div className='col-lg-12'>
               <div className='row'>
@@ -294,8 +241,8 @@ function Home() {
               </div>
             </div>
           </section>
-        </main>
 
+        </main>
       </section>
     </React.Fragment>
   )

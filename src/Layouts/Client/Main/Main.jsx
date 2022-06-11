@@ -16,14 +16,17 @@ function Main() {
             </div>
         </nav>
 
-        <section className='row'>
-          <main className='col-12'>
-            <Outlet />
-          </main>
-          <footer className='col-12 pt-3'>
-            <Footer />
+        <section className='container-fluid'>
+          <main className='row'>
+            <div className='col-12'>
+              <Outlet />
+            </div>
+            <footer className='col-12 pt-3'>
+              <Footer />
           </footer>
+          </main>
         </section>
+        
     </React.Fragment>
   )
 }
