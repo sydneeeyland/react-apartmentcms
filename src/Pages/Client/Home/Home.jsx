@@ -124,7 +124,7 @@ function Home() {
               ></button>
             </div>
             <div id="carouselMedia" className="carousel-inner">
-              {carouselSlides.map((props, index) => (
+              {carouselSlides.map((props) => (
                 <Carousel
                   interval={props.interval}
                   image={props.image}
@@ -201,7 +201,7 @@ function Home() {
           <div className="container pt-1">
             <div className="col-12">
               <div id="featuredProperties" className="row">
-                {properties.map((props, index) => (
+                {properties.map((props) => (
                   <FeaturedProperties
                     featuredImage={props.featuredImage}
                     title={props.title}
