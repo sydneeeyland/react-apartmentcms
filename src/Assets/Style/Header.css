@@ -41,12 +41,4 @@ nav li > a:hover {
         padding-left: .75rem;
         padding-right: .75rem;
     }
-
-    #topbar {
-        display: none !important;
-    }
-
-    body {
-        padding-top: 105px;
-    }
 }

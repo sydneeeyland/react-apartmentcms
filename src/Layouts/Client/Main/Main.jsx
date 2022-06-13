@@ -17,7 +17,7 @@ function Main() {
       </nav>
 
       <section className="container-fluid">
-        <main className="row">
+        <main className="row" id="client">
           <div className="col-12">
             <Outlet />
           </div>

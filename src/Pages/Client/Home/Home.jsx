@@ -16,7 +16,8 @@ import {
 } from "../../../Assets";
 
 // Components
-import { Carousel, FeaturedProperties } from "../../../Components";
+import Carousel from "../../../Components/Carousel";
+import FeaturedProperties from "../../../Components/FeaturedProperties";
 
 /* move json to different folder */
 const carouselSlides = [
