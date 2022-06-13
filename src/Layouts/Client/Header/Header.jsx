@@ -44,13 +44,16 @@ function Header() {
                     <NavLink to='/test' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
                   </li>
                   <li>
-                    <NavLink to='/test' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
+                    <NavLink to='/test2' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
                   </li>
                   <li>
                     <NavLink to='/contact' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>CONTACT</NavLink>
                   </li>
                   <li>
-                    <NavLink to='/test' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
+                    <NavLink to='/test3' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/login' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>LOGIN</NavLink>
                   </li>
                 </ul>
               </div>

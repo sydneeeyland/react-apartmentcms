@@ -2,8 +2,8 @@
     text-decoration: none;
 }
 
-#navlist {
-    display: block !important;
+.navbar-nav > li {
+    padding: 7px;
 }
 
 @media (max-width: 960px) {
@@ -13,5 +13,15 @@
         flex-grow: 1 ;
         align-items: center ;
         justify-content: center ;
+    }
+}
+
+@media (max-width: 1400px) {
+    #client {
+        padding-top: 105px;
+    }
+    
+    #topbar {
+        display: none !important;
     }
 }

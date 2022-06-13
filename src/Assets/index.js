@@ -14,6 +14,7 @@ import Facebook from './Svg/facebook.svg';
 import Twitter from './Svg/twitter.svg';
 import Instagram from './Svg/instagram.svg';
 import HomeSample from './Videos/HomeSample.mp4';
+import NotificationBell from './Svg/bell.svg';
 
 export {
     Bed,
@@ -31,5 +32,6 @@ export {
     Facebook,
     Twitter,
     Instagram,
-    HomeSample
+    HomeSample,
+    NotificationBell
 }
