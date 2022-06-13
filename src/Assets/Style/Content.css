@@ -1,0 +1,8 @@
+#content {
+    padding-left: 250px;
+    width: 100%;
+    height: 94vh !important;
+    min-height: auto !important;
+    max-height: 94vh !important;
+    background-color: red;
+}

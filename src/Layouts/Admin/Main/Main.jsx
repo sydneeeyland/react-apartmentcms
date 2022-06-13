@@ -1,34 +1,36 @@
-import React, { createContext } from 'react'
+import React, { createContext } from "react";
 import { Outlet } from "react-router-dom";
 
-import Header from '../Header/Header';
-import Sidebar from '../Sidebar/Sidebar';
-import '../../../Assets/Style/Sidebar.css';
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
+import "../../../Assets/Style/Sidebar.css";
+import '../../../Assets/Style/Content.css';
 
 function Main() {
   return (
     <React.Fragment>
-        {/* <header className='navbar navbar-expand-lg navbar-light bg-light shadow-sm'>
-          <Header />
-        </header>
+      <header className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <Header />
+      </header>
 
-        <section className='container-fluid'>
-          <div className='row'>
-            <aside id='sidebar' className='h-100 bg-light pt-4'>
+      <section>
+        <div className="d-flex flex-row flex-wrap p-0 m-0">
+          <aside id="sidebar" className="d-flex flex-column flex-wrap h-100 overflow-auto">
+            <div className="container-fluid">
               <Sidebar />
-            </aside>
-          </div>
-        </section>
-
-        <div className='container'>
-              <Outlet />
-        </div> */}
-
-        
-
-
+            </div>
+          </aside>
+          <main className="container-fluid">
+            <div  className="d-flex flex-column flex-wrap">
+              <div id="content" className="container-fluid">
+                asdasd
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
     </React.Fragment>
-  )
+  );
 }
 
-export default Main
+export default Main;
