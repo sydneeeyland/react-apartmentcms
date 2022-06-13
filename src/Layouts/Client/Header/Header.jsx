@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../../Assets/Style/Colors.css";
 import "../../../Assets/Style/Header.css";
+import '../../../Assets/Style/Site.css'
 
 window.onscroll = function () {
   scrollFunction();
@@ -20,59 +21,40 @@ function scrollFunction() {
 function Header() {
   return (
     <React.Fragment>
-      <section
-        className="d-flex flex-wrap bg-scheme1 container fixed-top mt-10 shadow-sm rounded"
-        id="header"
-      >
-        <div
-          className="d-flex flex-row flex-wrap gap-5 align-items-center container py-3"
-          id="navigation"
-        >
-          <div className="text-center">
-            <img
-              src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
-              alt="logo"
-              width="50"
-            />
-          </div>
-          <nav>
-            <ul className="d-flex flex-row flex-wrap list-unstyled pt-3">
-              <li>
-                <Link to="/home" className="text-decoration-none activelink">
-                  HOME
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-decoration-none">
-                  ABOUT US
-                </Link>
-              </li>
-              <li>
-                <Link to="/portfolio" className="text-decoration-none">
-                  APARTMENTS
-                </Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-decoration-none">
-                  TEST
-                </Link>
-              </li>
-              <li>
-                <Link to="/shop" className="text-decoration-none">
-                  TEST
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-decoration-none">
-                  CONTACT US
-                </Link>
-              </li>
-              <li>
-                <Link to="/pages" className="text-decoration-none">
-                  TEST
-                </Link>
-              </li>
-            </ul>
+      <section className="bg-scheme1 container fixed-top mt-10 shadow-sm rounded" id="header">
+        <div className="container py-3" id="navigation">
+          <nav className="navbar navbar-expand-lg navbar-light w-100">
+            <div className="container-fluid">
+              <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo" width="50"/>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbar">
+                <ul className="navbar-nav">
+                  <li>
+                    <NavLink to='/home' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>HOME</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/about' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>ABOUT</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/apartments' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>APARTMENTS</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/test' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/test' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/contact' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>CONTACT</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/test' className={({ isActive }) => (isActive ? "text-decoration-none activelink" : "")}>TEST</NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </nav>
         </div>
       </section>

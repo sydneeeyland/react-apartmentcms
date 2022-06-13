@@ -1,6 +1,17 @@
-body { padding-top: 40px; }
-@media screen and (max-width: 768px) {
-    body { 
-        padding-top: 0px; 
+#navbar > ul > li > a {
+    text-decoration: none;
+}
+
+#navlist {
+    display: block !important;
+}
+
+@media (max-width: 960px) {
+    .navbar-collapse {
+        display: flex ;
+        flex-basis: 100% ;
+        flex-grow: 1 ;
+        align-items: center ;
+        justify-content: center ;
     }
 }

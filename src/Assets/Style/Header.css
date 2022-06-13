@@ -9,20 +9,18 @@
 nav li > a {
     color: #2d394b !important;
     font-weight: bold;
-    padding: 35px;
+    margin: 35px;
+    font-size: 18px;
 }
 
 nav li > a:hover {
-    color: whitesmoke !important;
-    background-color: #efc4a3;
-    padding: 35px;
+    color: #efc4a3 !important;
     transition: .35s ease-in-out;
 }
 
 .activelink {
-    color: whitesmoke !important;
-    background-color: #efc4a3;
-    padding: 35px;
+    color: #efc4a3 !important;
+    margin: 35px;
 }
 
 #header {
@@ -32,8 +30,23 @@ nav li > a:hover {
     transition: .35s ease-in-out;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1400px) {
     #header {
         flex-direction: column;
+        overflow: hidden;
+        width: 100% !important;
+        margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: .75rem;
+        padding-right: .75rem;
+    }
+
+    #topbar {
+        display: none !important;
+    }
+
+    body {
+        padding-top: 105px;
     }
 }
