@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Bed, Room, Kitchen, Closet, Aircon, Bathroom, Pax } from "../Assets";
+import { Popover } from "bootstrap";
 
 function FeaturedProperties({
   featuredImage,
@@ -13,6 +14,17 @@ function FeaturedProperties({
   closet,
   pax,
 }) {
+  const popoverRef = useRef();
+
+  useEffect(() => {
+    const currentElement = popoverRef.current;
+    const t = new Popover(currentElement, {
+      html: true,
+      placement: "right",
+      trigger: "hover",
+    });
+  }, []);
+
   return (
     <React.Fragment>
       <div className={col}>
@@ -34,7 +46,13 @@ function FeaturedProperties({
                   <img src={Bed} alt="Bed" className="me-3" width="20"></img>
                   {bed}
                 </button>
-                <button className="btn btn-light m-3 rounded-pill">
+                <button
+                  className="btn btn-light m-3 rounded-pill"
+                  data-bs-toggle="popover"
+                  title="Aircon"
+                  data-bs-content={`<p>No # :<b>${aircon}</b></p> <p>Type: <b>Split Type</b></p>`}
+                  ref={popoverRef}
+                >
                   <img
                     src={Aircon}
                     alt="Closet"
@@ -43,7 +61,13 @@ function FeaturedProperties({
                   ></img>
                   {aircon}
                 </button>
-                <button className="btn btn-light m-3 rounded-pill">
+                <button
+                  className="btn btn-light m-3 rounded-pill"
+                  data-bs-toggle="popover"
+                  title="Kitchen"
+                  data-bs-content={`<p>No # :<b>${aircon}</b></p> <p>Type: <b>Split Type</b></p>`}
+                  ref={popoverRef}
+                >
                   <img
                     src={Kitchen}
                     alt="Kitchen"
