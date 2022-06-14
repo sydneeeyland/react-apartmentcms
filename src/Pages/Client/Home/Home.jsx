@@ -125,7 +125,7 @@ function Home() {
               ></button>
             </div>
             <div id="carouselMedia" className="carousel-inner">
-              {carouselSlides.map((props) => (
+              {carouselSlides.map((props, index) => (
                 <Carousel
                   interval={props.interval}
                   image={props.image}
@@ -133,6 +133,7 @@ function Home() {
                   label={props.label}
                   description={props.description}
                   active={props.active}
+                  key={index}
                 />
               ))}
             </div>
@@ -202,7 +203,7 @@ function Home() {
           <div className="container pt-1">
             <div className="col-12">
               <div id="featuredProperties" className="row">
-                {properties.map((props) => (
+                {properties.map((props, index) => (
                   <FeaturedProperties
                     featuredImage={props.featuredImage}
                     title={props.title}
@@ -214,6 +215,7 @@ function Home() {
                     bathroom={props.bathroom}
                     closet={props.closet}
                     pax={props.pax}
+                    key={index}
                   />
                 ))}
                 <div className="col-lg-12 pb-4">
