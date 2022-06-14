@@ -92,7 +92,7 @@ function Inquiry() {
         </div>
       </section>
 
-      <Modal show={modalShow} onHide={() => setModalShow(false)}  />
+      <Modal show={modalShow} onHide={() => setModalShow(!modalShow)} title={"Modify"} canDelete={true} />
 
     </React.Fragment>
   )
