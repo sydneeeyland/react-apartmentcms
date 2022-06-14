@@ -102,7 +102,7 @@ function Home() {
             className="carousel slide"
             data-bs-ride="carousel"
           >
-            <div className="carousel-indicators">
+            <div className="carousel-indicators d-none">
               <button
                 type="button"
                 data-bs-target="#carouselExampleCaptions"

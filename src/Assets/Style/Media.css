@@ -1,0 +1,80 @@
+@media (max-width: 767px) {
+    .page-content {
+        padding: 25px 15px !important;
+    }
+}
+
+@media (max-width: 800px) {
+    #topbar {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 800px) {
+    .featured-card {
+        flex-direction: column;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+    }
+
+    #inquiryForm {
+        height: 20em;
+        overflow: auto;
+    }
+
+    #parallax {
+        overflow: auto;
+        padding-top: 70vh !important;
+    }
+}
+
+@media (max-height: 800px) {
+    #contactForm {
+        height: 25em !important;
+    }
+}
+
+@media (max-width: 960px) {
+    .navbar-collapse {
+        display: flex ;
+        flex-basis: 100% ;
+        flex-grow: 1 ;
+        align-items: center ;
+        justify-content: center ;
+    }
+}
+
+@media (max-width: 991px) {
+    #sidebar {
+        z-index: 999;
+        margin-left: -280px;
+        visibility: hidden;
+    }
+
+    .page-nav {
+        width: 100%;
+        left: 0;
+    }
+
+    .main-wrapper .page-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #content {
+        padding-left: 1px !important
+    }
+}
+
+@media (max-width: 1400px) {
+    #client {
+        padding-top: 105px;
+    }
+    
+    #topbar {
+        display: none !important;
+    }
+}
