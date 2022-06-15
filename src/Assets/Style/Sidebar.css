@@ -55,8 +55,8 @@
 }
 
 #sidebar ul > .nav-item > a:hover {
-  color: #b89c9c!important;
-  background: #f8fafc !important;
+  color: white !important;
+  background: #00a3ff !important;
   width: 100%;
 }
 
@@ -66,7 +66,7 @@
 
 #sidebar ul > .nav-item > a:hover span {
   margin-left: 30px !important;
-  transition: 0.22s;
+  transition: 0.12s;
 }
 
 #sidebar ul > .nav-item > .nav-link {
@@ -89,8 +89,8 @@
 }
 
 .active {
-  color: #b89c9c!important;
-  background: #f8fafc !important;
+  color: white !important;
+  background: #00a3ff !important;
   width: 100% !important;
 }
 

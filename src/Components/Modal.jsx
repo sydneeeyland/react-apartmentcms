@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 const Delete = (props) => {
     if (props.canDelete) {
@@ -7,22 +7,48 @@ const Delete = (props) => {
             <>
                 <hr />
                 <h4 className='text-muted mb-3'>Danger Zone</h4>
-                <ol class="list-group" style={{borderStyle: "1px solid", borderColor: "red"}}>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="me-auto">
-                            <div class="fw-bold text-muted">Delete this record</div>
-                            Once you delete a data, there is no going back. Please be certain.
-                        </div>
-                        <button className='btn btn-danger mt-1'>Delete this record</button>
-                    </li>
+                <ol className="list-group">
+                    <div className="box box-border-danger">
+                        <li className="list-group-item d-flex justify-content-between align-items-start">
+                            <div className="me-auto">
+                                <div className="fw-bold text-muted">Delete this record</div>
+                                Once you delete a data, there is no going back. Please be certain.
+                            </div>
+                            <button className='btn btn-danger mt-1'>Delete this record</button>
+                        </li>
+                    </div>
                 </ol>
             </>
         )
     }
 }
 
+const Update = (props) => {
+    if (props.canUpdate) {
+        return (
+            <>
+                {
+                    props.formProps.map((prop, index) => (
+                        Form(prop)
+                    ))
+                }
+            </>
+        )
+    }
+}
+
+function Form(properties) {
+    if (['text', 'number', 'email'].indexOf(properties.type)){
+        return (
+            <div className="form-floating mb-3">
+                <input type={properties.Type} {...properties.Attributes} readOnly={true}/>
+                <label htmlFor="floatingInput">{properties.Label}</label>
+            </div>
+        )
+    }
+}
+
 function ModalForm(props) {
-    const test = props.canDelete ? 'working': 'no';
 
   return (
     <React.StrictMode>
@@ -33,15 +59,8 @@ function ModalForm(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-                </p>
-                {
-                    <Delete canDelete={true} />
-                }
+                { <Update canUpdate={props.canUpdate} formProps={props.formProps}/> }
+                { <Delete canDelete={props.canDelete} /> }
             </Modal.Body>
         </Modal>
     </React.StrictMode>

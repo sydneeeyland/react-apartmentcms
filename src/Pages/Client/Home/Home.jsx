@@ -172,7 +172,7 @@ function Home() {
               loading="lazy"
             >
               <h1 className="display-5 fw-bold">IN-SIGHT VIDEO</h1>
-              <video autoPlay muted>
+              <video autoPlay muted controls>
                 <source src={HomeSample} type="video/mp4"></source>
               </video>
             </div>

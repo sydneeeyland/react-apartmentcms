@@ -1,8 +1,52 @@
 import React, { useEffect, useState } from 'react'
 import Modal from '../../../Components/Modal';
+import '../../../Assets/Style/Table.css';
 
 function Inquiry() {
   const [modalShow, setModalShow] = useState(false);
+
+  const formProperties = [
+    {
+      "Label": "Email address",
+      "Type": "email",
+      "Attributes": {
+        "Id": "txt-email",
+        "Class": "form-control",
+        "Placeholder": "name@example.com",
+        "Required": ""
+      }
+    },
+    {
+      "Label": "Complete name",
+      "Type": "text",
+      "Attributes": {
+        "Id": "txt-name",
+        "Class": "form-control",
+        "Placeholder": "Jane Doe",
+        "Required": ""
+      }
+    },
+    {
+      "Label": "Contact number",
+      "Type": "number",
+      "Attributes": {
+        "Id": "txt-number",
+        "Class": "form-control",
+        "Placeholder": "0939641135",
+        "Required": ""
+      }
+    },
+    {
+      "Label": "Inquiry",
+      "Type": "textarea",
+      "Attributes": {
+        "Id": "txt-inquiry",
+        "Class": "form-control",
+        "Placeholder": "inquiry",
+        "Required": ""
+      }
+    }
+  ]
 
   useEffect(() => {
     console.log(modalShow);
@@ -12,33 +56,62 @@ function Inquiry() {
     <React.Fragment>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><a href="#">Home</a></li>
-          <li className="breadcrumb-item" aria-current="page">Library</li>
+          <li className="breadcrumb-item">
+            Home
+          </li>
+          <li className="breadcrumb-item" aria-current="page">
+            <span className='text-primary'>Inquiry</span>
+          </li>
         </ol>
       </nav>
       <section className='row'>
         <div className="col-md-12 grid-margin stretch-card">
-          <div className="card">
+          <div className="card shadow-sm">
             <div className="card-body">
-              <h6 className="card-title">Bordered table</h6>
-              <p className="text-muted mb-3">Add class <code>.table-bordered</code></p>
+              <h6 className="card-title">Inquiry list</h6>
+              <p className="text-muted mb-3">Modify or <code>delete record.</code></p>
               <div className="table-responsive pt-3">
-                <table className="table table-bordered">
-                  <thead className='text-center'>
+                <div id="search-box" className='d-flex flex-row flex-wrap flex-1 justify-content-end align-items-end mb-2'>
+                  <div className='col-2'>
+                    <input type='text' className='form-control' placeholder='Enter keywords ...'></input>
+                  </div>
+                  <div className='px-2'>
+                    <button className='btn btn-primary'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                      <span className='px-1'>Search</span>
+                    </button>
+                  </div>
+                </div>
+                <table className="table">
+                  <thead className='text-muted'>
                     <tr>
-                      <th>Email</th>
-                      <th>Name</th>
-                      <th>Contact</th>
-                      <th>Inquiry</th>
-                      <th></th>
+                      <th className='text-center'>
+                        <input type='checkbox' className='form-check-input' value="0"></input>
+                      </th>
+                      <th width='20%'>NAME</th>
+                      <th width='20%'>EMAIL</th>
+                      <th width='20%'>CONTACT</th>
+                      <th width='30%'>INQUIRY</th>
+                      <th width='5%'></th>
                     </tr>
                   </thead>
-                  <tbody className='text-center'>
-                    <tr>
-                      <td>Cedric Kelly</td>
-                      <td>$206,850</td>
-                      <td>June 21, 2022</td>
-                      <td>March 22, 2022</td>
+                  <tbody>
+                    <tr className='table-row'>
+                      <td>
+                        <div className='text-center'>
+                          <input type='checkbox' className='form-check-input' value="1"></input>
+                        </div>
+                      </td>
+                      <td>
+                        <span>Christin Ericssen</span>
+                      </td>
+                      <td>
+                        <span>Christin@Ericssen.com</span>
+                      </td>
+                      <td>
+                        <span>+63 999 9999 999</span>
+                      </td>
+                      <td>Huston, US</td>
                       <td>
                         <button className="btn btn-light btn-sm" id="dropdownMenuClickableInside" onClick={() => setModalShow(true)}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-settings">
@@ -48,51 +121,98 @@ function Inquiry() {
                         </button>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Haley Kennedy</td>
-                      <td>$313,500</td>
-                      <td>May 15, 2022</td>
-                      <td>March 22, 2022</td>
+                    <tr className='table-row'>
+                      <td>
+                        <div className='text-center'>
+                          <input type='checkbox' className='form-check-input' value="2"></input>
+                        </div>
+                      </td>
+                      <td>
+                        <span>Christin Ericssen</span>
+                      </td>
+                      <td>
+                        <span>Christin@Ericssen.com</span>
+                      </td>
+                      <td>
+                        <span>+63 999 9999 999</span>
+                      </td>
+                      <td>Huston, US</td>
+                      <td>
+                        <button className="btn btn-light btn-sm" id="dropdownMenuClickableInside" onClick={() => setModalShow(true)}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-settings">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                          </svg>
+                        </button>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Bradley Greer</td>
-                      <td>$132,000</td>
-                      <td>Apr 12, 2022</td>
-                      <td>March 22, 2022</td>
-                    </tr>
-                    <tr>
-                      <td>Brenden Wagner</td>
-                      <td>$206,850</td>
-                      <td>June 21, 2022</td>
-                      <td>March 22, 2022</td>
-                    </tr>
-                    <tr>
-                      <td>Bruno Nash</td>
-                      <td>$163,500</td>
-                      <td>January 01, 2022</td>
-                      <td>March 22, 2022</td>
-                    </tr>
-                    <tr>
-                      <td>Sonya Frost</td>
-                      <td>$103,600</td>
-                      <td>July 18, 2022</td>
-                      <td>March 22, 2022</td>
-                    </tr>
-                    <tr>
-                      <td>Zenaida Frank</td>
-                      <td>$313,500</td>
-                      <td>March 22, 2022</td>
-                      <td>March 22, 2022</td>
+                    <tr className='table-row'>
+                      <td>
+                        <div className='text-center'>
+                          <input type='checkbox' className='form-check-input' value="3"></input>
+                        </div>
+                      </td>
+                      <td>
+                        <span>Christin Ericssen</span>
+                      </td>
+                      <td>
+                        <span>Christin@Ericssen.com</span>
+                      </td>
+                      <td>
+                        <span>+63 999 9999 999</span>
+                      </td>
+                      <td>Huston, US</td>
+                      <td>
+                        <button className="btn btn-light btn-sm" id="dropdownMenuClickableInside" onClick={() => setModalShow(true)}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-settings">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                          </svg>
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
+                <div className="d-flex flex-stack flex-wrap pt-2">
+                  <div className='text-muted pb-3'>Showing 1 to 10 of 50 entries</div>
+									<ul className="pagination gap-2">
+										<li className="page-item previous">
+											<a href="#" className="page-link rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+											</a>
+										</li>
+										<li className="page-item active">
+											<a href="#" className="page-link rounded">1</a>
+										</li>
+										<li className="page-item">
+											<a href="#" className="page-link rounded">2</a>
+										</li>
+										<li className="page-item">
+											<a href="#" className="page-link rounded">3</a>
+										</li>
+										<li className="page-item">
+											<a href="#" className="page-link rounded">4</a>
+										</li>
+										<li className="page-item">
+											<a href="#" className="page-link rounded">5</a>
+										</li>
+										<li className="page-item">
+											<a href="#" className="page-link rounded">6</a>
+										</li>
+										<li className="page-item next">
+											<a href="#" className="page-link rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+											</a>
+										</li>
+									</ul>
+								</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <Modal show={modalShow} onHide={() => setModalShow(!modalShow)} title={"Modify"} canDelete={true} />
+      <Modal show={modalShow} onHide={() => setModalShow(!modalShow)} title={"Modify"} canDelete={true} canUpdate={true} formProps={formProperties} />
 
     </React.Fragment>
   )
