@@ -29,6 +29,10 @@
         overflow: auto;
         padding-top: 70vh !important;
     }
+
+    #search-box .col-2 {
+        width: 40% !important
+    }
 }
 
 @media (max-height: 800px) {
@@ -44,6 +48,10 @@
         flex-grow: 1 ;
         align-items: center ;
         justify-content: center ;
+    }
+
+    #search-box .col-2 {
+        width: 40% !important
     }
 }
 
@@ -76,5 +84,27 @@
     
     #topbar {
         display: none !important;
+    }
+}
+
+@media (max-width: 1650px) {
+    td {
+        display: block;
+        text-align: center;
+        padding: 8px !important;
+        border-bottom-width: 0px !important;
+    }
+
+    th {
+        display: none;
+    }
+
+    .table-row {
+        display: inline-block;
+        border: 0;
+        background-color: #fff;
+        width: calc(33.3% - 13px);
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 }
