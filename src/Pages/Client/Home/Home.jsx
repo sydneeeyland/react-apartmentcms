@@ -222,7 +222,7 @@ function Home() {
                   <div className="d-flex flex-wrap flex-column justify-content-end align-items-center h-100">
                     <Link
                       to="/apartment"
-                      className="btn btn-light w-50 fw-bold px-3 py-3 fs-5 rounded-pill"
+                      className="btn btn-light btn-sm w-50 fw-bold px-3 py-3 rounded-pill"
                     >
                       SEE MORE ....
                     </Link>
