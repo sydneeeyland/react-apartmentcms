@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Bed, Room, Kitchen, Closet, Aircon, Bathroom, Pax } from "../Assets";
-import { Popover } from "bootstrap";
 
 function FeaturedProperties({
   featuredImage,
@@ -14,16 +13,7 @@ function FeaturedProperties({
   closet,
   pax,
 }) {
-  const popoverRef = useRef();
 
-  useEffect(() => {
-    const currentElement = popoverRef.current;
-    const t = new Popover(currentElement, {
-      html: true,
-      placement: "right",
-      trigger: "hover",
-    });
-  }, []);
 
   return (
     <React.Fragment>
@@ -50,8 +40,6 @@ function FeaturedProperties({
                   className="btn btn-light m-3 rounded-pill"
                   data-bs-toggle="popover"
                   title="Aircon"
-                  data-bs-content={`<p>No # :<b>${aircon}</b></p> <p>Type: <b>Split Type</b></p>`}
-                  ref={popoverRef}
                 >
                   <img
                     src={Aircon}
@@ -65,8 +53,6 @@ function FeaturedProperties({
                   className="btn btn-light m-3 rounded-pill"
                   data-bs-toggle="popover"
                   title="Kitchen"
-                  data-bs-content={`<p>No # :<b>${aircon}</b></p> <p>Type: <b>Split Type</b></p>`}
-                  ref={popoverRef}
                 >
                   <img
                     src={Kitchen}
