@@ -1,7 +1,33 @@
-import React from 'react'
-import { Image } from '../../../Assets';
+import React, { useState } from 'react'
+import { useEffect } from 'react';
 
 function Carousel() {
+  const [images, setImages] = useState([]);
+  
+  const ToggleCheck= (prop) => {
+    const parent = document.getElementById("cb-" + prop);
+    const inputElements = parent.querySelectorAll('input[type="checkbox"]').forEach(e => e.checked ^= 1);
+
+    if (document.getElementById('img-' + prop).classList.contains('active-image')) {
+      document.getElementById('img-' + prop).classList.remove('active-image');
+    } else {
+      document.getElementById('img-' + prop).classList.add('active-image');
+    }
+  }
+
+  const ToggleFileDialog = () => {
+    document.getElementById('upload-images').click();
+  }
+
+  useEffect(() => {
+    const FetchData = async() => {
+      const response = await fetch('https://my.api.mockaroo.com/imageapi.json?key=b8b25630');
+      const data = await response.json();
+      setImages(data);
+    }
+    FetchData();
+  }, []);
+
   return (
     <React.Fragment>
         <nav aria-label="breadcrumb">
@@ -23,162 +49,65 @@ function Carousel() {
                 <div className='row col-12'>
                   <div className='col-xxl-7 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12'>
                     <p className="text-muted mb-3"><code>Stored images.</code></p>
+                    <div className='row col-12'>
+                      <div className="col-12 form-inline d-flex gap-2 justify-content-end align-items-end">
+                        <button className='btn btn-primary btn-sm float-end mb-3' onClick={() => ToggleFileDialog()}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                          <span className='px-2'>Upload</span>
+                          <input id='upload-images' type="file" multiple hidden></input>
+                        </button>
+                        <div className="btn-group">
+                          <button type="button" className="btn btn-primary dropdown-toggle btn-sm mb-3" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            <span className='px-2'>Action</span>
+                          </button>
+                          <ul className="dropdown-menu">
+                            <li>
+                              <h6 className="dropdown-header">Operations</h6>
+                            </li>
+                            <li>
+                              <a className="dropdown-item" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                <span className='px-2'>Modify</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a className="dropdown-item" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <span className='px-2'>Set as featured</span>
+                              </a>
+                            </li>
+                            <li>
+                              <h6 className="dropdown-header text-danger">Danger Zone</h6>
+                            </li>
+                            <li>
+                              <a className="dropdown-item" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                <span className='px-2'>Delete selected</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
 
                     <div id='gallery' className='col-12 row'>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2 active-image'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay float-end">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
-                        <div id='image-gallery' className="card bg-light text-white">
-                          <img className="card-img" height="150px" data-src="holder.js/100px270/#55595c:#373a3c/text:Card image" alt="100%x270" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221149%22%20height%3D%22270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201149%20270%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18175ac3f92%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A57pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18175ac3f92%22%3E%3Crect%20width%3D%221149%22%20height%3D%22270%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22410.3828125%22%20y%3D%22160.5%22%3E1149x270%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" />
-                          <div className="overlay">
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          </div>
-                        </div>
-                      </div>
-                      
+                      {
+                        images.map((x) => {
+                          return(
+                            <div id={"img-" + x.id} key={x.id} className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
+                              <a href="#" onClick={(e) => ToggleCheck(x.id)}>
+                                <div id='image-gallery' className="card bg-light text-white">
+                                  <img className="card-img" height="150px" alt="100%x270" src={x.source} data-holder-rendered="true" loading="lazy"/>
+                                  <div id={"cb-" + x.id} className="overlay float-end">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          )
+                        })
+                      }
                     </div>
                   </div>
 
