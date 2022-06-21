@@ -122,3 +122,33 @@
     border-color: #00a3ff !important;
     background-color: #00a3ff !important;
 }
+
+#gallery {
+    max-height: 650px !important;
+    overflow: auto;
+}
+
+#image-gallery:hover img {
+    transition: 0.2s !important;
+    padding: 15px !important;
+    background-color: #c4d9fd !important;
+    border-radius: 10px !important;
+}
+
+.overlay {
+    position: absolute;
+    padding: 5px;
+    border-radius: calc(0.25rem - 1px);
+}
+
+.overlay input[type='checkbox'] {
+    border-radius: 50% !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.active-image img {
+    transition: 0.3s !important;
+    padding: 15px !important;
+    background-color: #c4d9fd !important;
+}

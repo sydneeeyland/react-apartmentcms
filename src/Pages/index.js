@@ -7,6 +7,7 @@ import Dashboard from './Admin/Dashboard/Dashboard';
 import Floorplan from './Admin/Floorplan/Floorplan';
 import Inquiry from './Admin/Inquiry/Inquiry';
 import Properties from './Admin/Properties/Properties';
+import Settings from './Admin/Settings/Settings';
 
 export {
     Home,
@@ -17,5 +18,6 @@ export {
     Dashboard,
     Floorplan,
     Inquiry,
-    Properties
+    Properties,
+    Settings
 }
