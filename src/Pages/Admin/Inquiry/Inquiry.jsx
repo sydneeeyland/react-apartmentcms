@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import '../../../Assets/Style/Table.css';
 
 function Inquiry() {
-  let PageSize = 25;
+  let PageSize = 10;
 
   const [modalShow, setModalShow] = useState(false);
   const formProperties = [{"Label":"Email address","Type":"email","Attributes":{"Id":"txt-email","Class":"form-control","Placeholder":"name@example.com","Required":""}},{"Label":"Complete name","Type":"text","Attributes":{"Id":"txt-name","Class":"form-control","Placeholder":"Jane Doe","Required":""}},{"Label":"Contact number","Type":"number","Attributes":{"Id":"txt-number","Class":"form-control","Placeholder":"0939641135","Required":""}},{"Label":"Inquiry","Type":"textarea","Attributes":{"Id":"txt-inquiry","Class":"form-control","Placeholder":"inquiry","Required":""}}]
@@ -20,7 +20,6 @@ function Inquiry() {
       setPageCount(Math.ceil(total / PageSize));
       setItems(data);
     };
-
     FetchData();
   }, [PageSize]);
 
@@ -36,7 +35,6 @@ function Inquiry() {
     const response = await fetch(api);
     const data = await response.json();
     const total = response.headers.get('x-total-count');
-    console.log(response.headers);
     return data;
   }
 
@@ -131,8 +129,8 @@ function Inquiry() {
                 <div className="d-flex flex-stack flex-wrap pt-2">
                   <div className='text-muted pb-3'></div>
                   <ReactPaginate
-                    previousLabel={"previous"}
-                    nextLabel={"next"}
+                    previousLabel={"Previous"}
+                    nextLabel={"Next"}
                     breakLabel={"..."}
                     pageCount={pageCount}
                     marginPagesDisplayed={2}
@@ -155,7 +153,6 @@ function Inquiry() {
           </div>
         </div>
       </section>
-
       <Modal show={modalShow} onHide={() => setModalShow(!modalShow)} title={"Modify"} canDelete={true} canUpdate={true} formProps={formProperties} />
     </React.Fragment>
   )

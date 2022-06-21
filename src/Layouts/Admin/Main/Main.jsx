@@ -11,7 +11,7 @@ function Main() {
     <React.Fragment>
       <section className="main-wrapper">
 
-        <nav id="sidebar" className="d-flex flex-column flex-shrink-0 p-3">
+        <nav id="sidebar" className="d-flex flex-column flex-shrink-0 p-2">
           <div className="logo d-flex justify-content-between">
             <a href="#" className="sidebar-brand text-decoration-none">
               APARTMENT<span></span>
