@@ -1,5 +1,5 @@
 // Package
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Style
@@ -17,6 +17,7 @@ import {
 
 // Components
 import Carousel from "../../../Components/Carousel";
+import CarouselButton from '../../../Components/CarouselButton';
 import FeaturedProperties from "../../../Components/FeaturedProperties";
 
 /* move json to different folder */
@@ -93,6 +94,18 @@ const properties = [
 ];
 
 function Home() {
+  // const [images, setImages] = useState([]);
+  
+  // useEffect(() => {
+  //   const FetchData = async () => {
+  //     const response = await fetch('https://my.api.mockaroo.com/carousel.json?key=b8b25630');
+  //     const data = await response.json();
+  //     setImages(data);
+  //   }
+
+  //   FetchData();
+  // }, [])
+
   return (
     <React.Fragment>
       <section>
@@ -103,6 +116,11 @@ function Home() {
             data-bs-ride="carousel"
           >
             <div className="carousel-indicators d-none">
+              {/* {
+                images.map((props, index) => (
+                  <CarouselButton slideTo={props.id} active={props.active} />
+                ))
+              } */}
               <button
                 type="button"
                 data-bs-target="#carouselExampleCaptions"
@@ -125,17 +143,19 @@ function Home() {
               ></button>
             </div>
             <div id="carouselMedia" className="carousel-inner">
-              {carouselSlides.map((props, index) => (
-                <Carousel
-                  interval={props.interval}
-                  image={props.image}
-                  alt={props.alt}
-                  label={props.label}
-                  description={props.description}
-                  active={props.active}
-                  key={index}
-                />
-              ))}
+              {
+                carouselSlides.map((props, index) => (
+                  <Carousel
+                    interval={"3500"}
+                    image={props.image}
+                    alt={props.alt}
+                    label={props.label}
+                    description={props.description}
+                    active={props.active}
+                    key={index}
+                  />
+                ))
+              }
             </div>
             <button
               className="carousel-control-prev"

@@ -31,8 +31,12 @@ function Inquiry() {
   }
 
   const FilterData = async(filterValue) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${filterValue}`);
+    let api = filterValue === '' ? `https://jsonplaceholder.typicode.com/comments?page=1&_limit=${PageSize}` : `https://jsonplaceholder.typicode.com/comments?postId=${filterValue}`
+
+    const response = await fetch(api);
     const data = await response.json();
+    const total = response.headers.get('x-total-count');
+    console.log(response.headers);
     return data;
   }
 
@@ -63,7 +67,6 @@ function Inquiry() {
           <div className="card shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Inquiry list</h6>
-              <p className="text-muted mb-3">Modify or <code>delete record.</code></p>
               <div className="table-responsive pt-3">
                 <div id="search-box" className='d-flex flex-row flex-wrap flex-1 justify-content-end align-items-end mb-2'>
                   <div className='col-2'>
@@ -106,9 +109,11 @@ function Inquiry() {
                               <span>{x.email}</span>
                             </td>
                             <td>
-                              <span>{x.contact}</span>
+                              <span>{x.postId}</span>
                             </td>
-                            <td>{x.inquiry}</td>
+                            <td>
+                              <span>{x.body}</span>
+                            </td>
                             <td>
                               <button className="btn btn-light btn-sm" id="dropdownMenuClickableInside" onClick={() => setModalShow(true)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-settings">
@@ -133,7 +138,7 @@ function Inquiry() {
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}
-                    containerClassName={"pagination gap-2"}
+                    containerClassName={"pagination gap-1 ml-5"}
                     pageClassName={"page-item"}
                     pageLinkClassName={"page-link rounded"}
                     previousClassName={"page-item"}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Client, Admin } from './Layouts';
-import { Home, PageNotFound, Login, Dashboard, Inquiry, Carousel, Properties, Floorplan, About } from './Pages';
+import { Home, PageNotFound, Login, Dashboard, Inquiry, Carousel, Properties, Floorplan, About, Settings } from './Pages';
 
 // TO REFACTOR
 function App() {
@@ -25,6 +25,7 @@ function App() {
             <Route index path='/admin/properties' element={<Properties />} />
             <Route index path='/admin/floorplan' element={<Floorplan />} />
             <Route index path='/admin/aboutus' element={<About />} />
+            <Route index path='/admin/settings' element={<Settings />} />
           </Route>
 
           <Route index path='/login' element={<Login />} />
