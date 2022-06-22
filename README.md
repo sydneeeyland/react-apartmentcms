@@ -1,4 +1,4 @@
 # Apartment System
 
-#/ for website
-#/admin for admin side
+# / for website
+# /admin for admin side
