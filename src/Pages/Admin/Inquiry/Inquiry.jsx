@@ -25,6 +25,7 @@ function Inquiry() {
 
   const FetchDataPaginate = async (currentPage) => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${PageSize}`);
+    console.log(PageSize);
     const data = await response.json();
     return data;
   }
