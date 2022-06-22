@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { FetchImages, FetchNewImages } from '../../../Services/ApiCall';
 
+let pageLength = 20;
 function Carousel() {
   const [images, setImages] = useState([]);
+  let [page, setPage] = useState(1);
+  const [total, setTotal] = useState(20);
   
   const ToggleCheck= (prop) => {
     const parent = document.getElementById("cb-" + prop);
@@ -18,15 +22,24 @@ function Carousel() {
   const ToggleFileDialog = () => {
     document.getElementById('upload-images').click();
   }
-
+  
   useEffect(() => {
     const FetchData = async() => {
-      const response = await fetch('https://my.api.mockaroo.com/imageapi.json?key=b8b25630');
+      const response = await fetch(`https://jsonplaceholder.typicode.com/photos?page=${page}&_limit=${pageLength}`);
       const data = await response.json();
       setImages(data);
     }
     FetchData();
   }, []);
+
+  const LazyLoad = async (e) => {
+    if ((e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {
+      setPage(page += 1);
+      const newImages = await FetchNewImages(page);
+      setImages([...images, ...newImages]);
+    }
+    setTotal(images.length);
+  }
 
   return (
     <React.Fragment>
@@ -50,7 +63,10 @@ function Carousel() {
                   <div className='col-xxl-7 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12'>
                     <p className="text-muted mb-3"><code>Stored images.</code></p>
                     <div className='row col-12'>
-                      <div className="col-12 form-inline d-flex gap-2 justify-content-end align-items-end">
+                      <div className="col-6 form-inline d-flex gap-2 justify-content-start align-items-start">
+                        Images: {total}
+                      </div>
+                      <div className="col-6 form-inline d-flex gap-2 justify-content-end align-items-end">
                         <button className='btn btn-primary btn-sm float-end mb-3' onClick={() => ToggleFileDialog()}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                           <span className='px-2'>Upload</span>
@@ -91,14 +107,14 @@ function Carousel() {
                       </div>
                     </div>
 
-                    <div id='gallery' className='col-12 row'>
+                    <div id='gallery' className='col-12 row' onScroll={(e) => LazyLoad(e)}>
                       {
                         images.map((x) => {
                           return(
                             <div id={"img-" + x.id} key={x.id} className='col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 mb-2'>
                               <a href="#" onClick={(e) => ToggleCheck(x.id)}>
                                 <div id='image-gallery' className="card bg-light text-white">
-                                  <img className="card-img" height="150px" alt="100%x270" src={x.source} data-holder-rendered="true" loading="lazy"/>
+                                  <img className="card-img" height="150px" alt="100%x270" src={x.url} data-holder-rendered="true" loading="lazy"/>
                                   <div id={"cb-" + x.id} className="overlay float-end">
                                     <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                                   </div>
