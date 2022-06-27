@@ -5,16 +5,16 @@ import { FetchImages, FetchNewImages } from '../../../Services/ApiCall';
 let pageLength = 20;
 function Carousel() {
   const [images, setImages] = useState([]);
-  let [page, setPage] = useState(1);
   const [total, setTotal] = useState(20);
+  let [page, setPage] = useState(1);
   
   const ToggleCheck= (prop) => {
     const parent = document.getElementById("cb-" + prop);
-    const inputElements = parent.querySelectorAll('input[type="checkbox"]').forEach(e => e.checked ^= 1);
-
-    if (document.getElementById('img-' + prop).classList.contains('active-image')) {
+    if (document.getElementById("cb-" + prop).checked) {
+      document.getElementById("cb-" + prop).checked = false;
       document.getElementById('img-' + prop).classList.remove('active-image');
     } else {
+      document.getElementById("cb-" + prop).checked = true;
       document.getElementById('img-' + prop).classList.add('active-image');
     }
   }
@@ -33,7 +33,9 @@ function Carousel() {
   }, []);
 
   const LazyLoad = async (e) => {
-    if ((e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {
+    console.log(((e.target.scrollHeight - e.target.scrollTop) <= e.target.clientHeight));
+    if ((e.target.scrollHeight - e.target.scrollTop - 1) <= e.target.clientHeight) {
+      console.log(e.target.scrollHeight - e.target.scrollTop - 1);
       setPage(page += 1);
       const newImages = await FetchNewImages(page);
       setImages([...images, ...newImages]);
@@ -115,8 +117,8 @@ function Carousel() {
                               <a href="#" onClick={(e) => ToggleCheck(x.id)}>
                                 <div id='image-gallery' className="card bg-light text-white">
                                   <img className="card-img" height="150px" alt="100%x270" src={x.url} data-holder-rendered="true" loading="lazy"/>
-                                  <div id={"cb-" + x.id} className="overlay float-end">
-                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                  <div className="overlay float-end">
+                                    <input id={"cb-" + x.id} className="form-check-input" type="checkbox" value="" />
                                   </div>
                                 </div>
                               </a>

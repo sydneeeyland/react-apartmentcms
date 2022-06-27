@@ -25,14 +25,12 @@ function Inquiry() {
 
   const FetchDataPaginate = async (currentPage) => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${PageSize}`);
-    console.log(PageSize);
     const data = await response.json();
     return data;
   }
 
   const FilterData = async(filterValue) => {
     let api = filterValue === '' ? `https://jsonplaceholder.typicode.com/comments?page=1&_limit=${PageSize}` : `https://jsonplaceholder.typicode.com/comments?postId=${filterValue}`
-
     const response = await fetch(api);
     const data = await response.json();
     const total = response.headers.get('x-total-count');
