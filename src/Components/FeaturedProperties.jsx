@@ -21,6 +21,7 @@ function FeaturedProperties({
         <div
           className="card featured-card shadow-sm"
           style={{ backgroundImage: `url(${featuredImage})` }}
+          loading="lazy"
         >
           <div className="card-body">
             <div className="d-flex flex-wrap flex-column justify-content-end align-items-center h-100">
