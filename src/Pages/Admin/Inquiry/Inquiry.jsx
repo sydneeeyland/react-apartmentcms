@@ -22,7 +22,7 @@ function Inquiry() {
     };
     FetchData();
   }, [PageSize]);
-
+  
   const FetchDataPaginate = async (currentPage) => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${PageSize}`);
     const data = await response.json();
